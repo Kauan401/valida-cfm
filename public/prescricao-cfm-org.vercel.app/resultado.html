@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from prescricao-cfm-org.vercel.app/resultado.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Feb 2026 05:17:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8" />
+  <title>Resultado da Validação - CFM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="static/faviconcfm.ico" type="image/png" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    /* ================= TOPBAR ================= */
+    .topbar {
+      background: #078860;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .menu-btn {
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .topbar img {
+      height: 60px;
+    }
+
+    .divider {
+      width: 2px;
+      height: 50px;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .topbar strong {
+      font-size: 15px;
+      display: block;
+    }
+
+    .topbar span {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* ================= MENU LATERAL ================= */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 2px 0 12px rgba(138, 52, 52, 0.2);
+      transition: left 0.3s ease;
+      z-index: 10000;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    .menu-header {
+      background: #078860;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .menu-header img {
+      width: 140px;
+    }
+
+    .menu-items a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .menu-items a:hover {
+      background: #f4f6f8;
+    }
+
+    /* ================= OVERLAY ================= */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index: 9999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* ================= CONTAINER ================= */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 15px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-weight: normal;
+      color: #333;
+    }
+    .block h3 {
+  color: #00875f; /* verde */
+ }
+
+
+    /* ================= BOX ================= */
+    .wrap {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      border: 2px solid #dcdcdc;
+    }
+
+    .block {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .status {
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 13px;
+    }
+
+    .ok {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .bad {
+      background: #fee2e2;
+      color: #7f1d1d;
+    }
+
+    .btn {
+      margin-top: 20px;
+      background: #00875f;
+      border: none;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 22px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* ================= INSTITUCIONAL ================= */
+    .institucional {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 25px;
+      text-align: center;
+    }
+
+    .bloco-inst {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .bloco-inst h3 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 18px;
+      position: relative;
+      display: inline-block;
+      padding: 0 10px;
+    }
+
+    .bloco-inst h3::before,
+    .bloco-inst h3::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 2px;
+      background: #078860;
+    }
+
+    .bloco-inst h3::before { left: -65px; }
+    .bloco-inst h3::after { right: -65px; }
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .logos img {
+      height: 40px;
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      background: #353A3E;
+      color: #fff;
+      font-size: 13px;
+      padding: 18px 20px;
+      position: relative;
+      margin-top: 60px;
+    }
+
+    .footer .text {
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .footer .version {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU -->
+<div class="side-menu" id="sideMenu">
+  <div class="menu-header">
+    <img src="static/logo-menu.html">
+  </div>
+  <div class="menu-items">
+    <a href="index-2.html">Consultar Documento</a>
+    <a href="#">Perguntas Frequentes</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="menu-btn" id="menuBtn">☰</div>
+  <img src="static/BanerCFM.png">
+  <div class="divider"></div>
+  <div>
+    <strong>Validação de Documentos Médicos</strong>
+    <span>CFM - Conselho Federal de Medicina</span>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Resultado da Validação</h2>
+
+  <div class="wrap">
+    <div id="result"></div>
+
+    <button class="btn" onclick="voltar()">Nova Pesquisa</button>
+
+    <div class="institucional">
+      <div class="bloco-inst">
+        <h3>REALIZAÇÃO</h3>
+        <div class="logos">
+          <img src="../www.gov.br/iti/pt-br/canais_atendimento/imprensa/logo_iti.png">
+          <img src="../sites.ufpe.br/especializacao/wp-content/uploads/sites/11/2019/12/logo-patria-amada-brasil-horizontal.png">
+        </div>
+      </div>
+
+      <div class="bloco-inst">
+        <h3>APOIO INSTITUCIONAL</h3>
+        <div class="logos">
+          <img src="../crmsc.org.br/wp-content/uploads/2023/04/CFM.png">
+          <img src="../i.ibb.co/vx9XSMrW/certificado.png">
+          <img src="../logodownload.org/wp-content/uploads/2023/01/governo-federal-2023-logo-lula.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="text">SISTEMA PRESCRIÇÃO ELETRÔNICA © CONSELHO FEDERAL DE MEDICINA.</div>
+  <div class="version">v1.9.18</div>
+</div>
+
+<script src="db.html"></script>
+<script>
+  /* MENU HAMBÚRGUER */
+  const menuBtn = document.getElementById("menuBtn");
+  const sideMenu = document.getElementById("sideMenu");
+  const overlay = document.getElementById("overlay");
+
+  menuBtn.onclick = () => {
+    sideMenu.classList.add("active");
+    overlay.classList.add("active");
+  };
+
+  overlay.onclick = () => {
+    sideMenu.classList.remove("active");
+    overlay.classList.remove("active");
+  };
+
+  /* VOLTAR */
+  function voltar() {
+    window.location.href = "index-2.html";
+  }
+
+  /* FORMATA DATA PARA DD/MM/AAAA */
+  function formatDate(d) {
+    if (!d) return '';
+    if (d.includes('index.html')) return d;
+    const [y, m, day] = d.split("-");
+    return `${day}/${m}/${y}`;
+  }
+
+  /* RENDERIZA RESULTADO */
+  async function renderResult() {
+    const code = localStorage.getItem("consultaChave");
+    const el = document.getElementById("result");
+
+    if (!code) {
+      el.innerHTML = `<div class="block"><strong>Nenhuma consulta realizada</strong></div>`;
+      return;
+    }
+
+    // Busca o JSON
+    const response = await fetch("db.json");
+    const db = await response.json();
+
+    // Procura pelo registro
+    const rec = db.registros.find(r => r.chave === code);
+
+    if (!rec) {
+      el.innerHTML = `<div class="block"><strong>Documento inválido ou não encontrado</strong></div>`;
+      return;
+    }
+
+    el.innerHTML = `
+      <div class="block">
+        <h3>Paciente</h3>
+        Nome: ${rec.paciente.nome}<br>
+        CPF: ${rec.paciente.cpf}<br>
+        Nascimento: ${rec.paciente.dataNascimento}<br>
+        CID 10: ${rec.paciente.cid}<br>
+        Observações: ${rec.paciente.observacoes}
+      </div>
+      <div class="block">
+        <h3>Médico</h3>
+        Nome: ${rec.medico.nome}<br>
+        CRM: ${rec.medico.crm}<br>
+        Especialidade: ${rec.medico.especialidade}<br>
+        Assinatura: ${rec.medico.assinaturaDigital}
+      </div>
+      <div class="block">
+        <h3>Receituario</h3>
+        Chave: ${rec.chave}<br>
+        Data emissão: ${rec.data}<br>
+        Unidade: ${rec.atestato.unidade}<br>
+        Medicamento: ${rec.atestato.medic}<br>
+  Apresentação: ${rec.atestato.apre}<br>
+        Posologia: ${rec.atestato.poso}<br>
+  Quantidade: ${rec.atestato.quanti}<br>
+        <span class="status ${rec.atestato.status === 'válido' ? 'ok' : 'bad'}">
+          ${rec.atestato.status === 'válido' ? 'Documento válido' : 'Documento inválido'}
+        </span>
+      </div>
+    `;
+  }
+
+  renderResult();
+
+
+
+
+
+    // ❌ Bloquear botão direito do mouse
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // ❌ Bloquear atalhos de teclado
+  document.addEventListener("keydown", function (e) {
+
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + U
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + I
+    if (e.ctrlKey && e.key.toLowerCase() === "i") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + Shift + I
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + Shift + J
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + S (Salvar página)
+    if (e.ctrlKey && e.key.toLowerCase() === "s") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + P (Imprimir)
+    if (e.ctrlKey && e.key.toLowerCase() === "p") {
+      e.preventDefault();
+      return false;
+    }
+
+  });
+
+  // ❌ Tentativa extra para detectar DevTools aberto
+  setInterval(function () {
+    const start = performance.now();
+    debugger;
+    const end = performance.now();
+    if (end - start > 100) {
+      document.body.innerHTML = "";
+    }
+  }, 1000);
+</script>
+
+
+</body>
+
+<!-- Mirrored from prescricao-cfm-org.vercel.app/resultado.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Feb 2026 05:17:56 GMT -->
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from prescricao-cfm-org.vercel.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Feb 2026 05:17:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8" />
+  <title>Prescrição Eletrônica - CFM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="static/faviconcfm.ico" type="image/png" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: #078860;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .menu-btn {
+      font-size: 26px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .topbar img {
+      height: 60px;
+    }
+
+    .divider {
+      width: 2px;
+      height: 50px;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .topbar .title strong {
+      font-size: 15px;
+      display: block;
+    }
+
+    .topbar .title span {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* MENU */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+      transition: left 0.3s ease;
+      z-index: 10000;
+      padding-top: 70px;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 20px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .side-menu.active { left: 0; }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index: 9999;
+    }
+
+    .overlay.active { display: block; }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 15px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: normal;
+      color: #333;
+    }
+
+    /* BOX PRINCIPAL */
+    .box {
+      background: #ffffff;
+      border: 2px solid #dcdcdc;
+      border-radius: 10px;
+      padding: 45px;
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    /* COLUNA ESQUERDA */
+    .form-left {
+      flex: 1;
+    }
+
+    .form-left h3 {
+      color: #00875f;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 380px;
+      max-width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .required { color: red; }
+
+    .actions {
+      margin-top: 40px;
+    }
+.btn-primary {
+  margin-top: 90px;
+  background: #00875f;
+  border: none;
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-weight: bold;
+
+  align-self: flex-start; /* 👈 força canto esquerdo */
+}
+
+
+    /* QR */
+    .qr-area {
+      width: 300px;
+      text-align: center;
+    }
+
+    .qr-area .title {
+      font-weight: 600;
+      margin-bottom: 4px;
+        text-align: left;
+  color: #008159;
+
+    }
+
+.subtitle{
+  text-align: left;
+}
+
+
+    .qr-area .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    .qr-area img {
+      width: 180px;
+      margin-bottom: 12px;
+    }
+
+    .qr-area .code {
+      font-size: 13px;
+    }
+    .form-left {
+  display: flex;
+  flex-direction: column;
+}
+
+
+    /* LOADER */
+    #loaderArea {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #ccc;
+      border-top-color: #0a8f5c;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* RODAPÉ */
+    .footer {
+      background: #353A3E;
+      color: #ffffff;
+      font-size: 13px;
+      padding: 18px 20px;
+      position: relative;
+      margin-top: -30px;
+    }
+
+    .footer .text {
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .footer .version {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .box {
+        flex-direction: column;
+      }
+      input {
+        width: 100%;
+      }
+      .qr-area {
+        width: 100%;
+        margin-top: 30px;
+      }
+    }
+    /* ============================= */
+/* RESPONSIVIDADE GLOBAL */
+/* ============================= */
+
+/* Tablets e telas médias */
+@media (max-width: 1024px) {
+  .box {
+    gap: 40px;
+    padding: 35px;
+  }
+
+  .qr-area {
+    width: 260px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+  }
+
+  .box {
+    flex-direction: column;
+    padding: 25px;
+    gap: 30px;
+  }
+
+  .form-left h3 {
+    font-size: 15px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .btn-primary {
+    margin-top: 30px;
+  }
+
+  .qr-area {
+    width: 100%;
+    text-align: left;
+  }
+
+  .qr-area img {
+    width: 160px;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .topbar {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  .topbar img {
+    height: 45px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .topbar .title strong {
+    font-size: 14px;
+  }
+
+  .topbar .title span {
+    font-size: 11px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .form-left h3 {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .footer .version {
+    position: static;
+    transform: none;
+    margin-top: 6px;
+  }
+}
+/* ============================= */
+/* FOOTER SEMPRE NO FINAL DA TELA */
+/* ============================= */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Conteúdo principal cresce e empurra o footer */
+.container {
+  flex: 1;
+}
+
+/* Footer fixado no final quando a tela é maior que o conteúdo */
+.footer {
+  margin-top: auto;
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="side-menu" id="sideMenu">
+  <a href="#">Início</a>
+  <a href="#">Consultar Documento</a>
+  <a href="#">Validação</a>
+  <a href="#">Ajuda</a>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="topbar">
+  <div class="menu-btn" id="menuBtn">☰</div>
+  <img src="static/BanerCFM.png">
+  <div class="divider"></div>
+  <div class="title">
+    <strong>Consultar Documentos Médicos</strong>
+    <span>CFM - Conselho Federal de Medicina</span>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Consultar Documentos Médicos</h2>
+
+  <div class="box">
+    <div class="form-left">
+      <h3>Consulte documentos médicos através do Código de Validação</h3>
+
+      <form id="form">
+        <label>Código de Validação <span class="required">*</span></label>
+        <input type="text" id="codigo" placeholder="CFMP-XX-XXXXXXXXX" required>
+
+        <div class="actions">
+          <button class="btn-primary" id="btnPesquisar">Consultar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="qr-area">
+      <p class="title">Onde encontrar?</p>
+      <p class="subtitle">Próximo ao QR code em seu documento médico</p>
+      <img src="static/qrcodeCFMAmostra.png">
+      
+    </div>
+  </div>
+</div>
+
+<div id="loaderArea">
+  <div class="spinner"></div>
+</div>
+
+<div class="footer">
+  <div class="text">SISTEMA PRESCRIÇÃO ELETRÔNICA © CONSELHO FEDERAL DE MEDICINA.</div>
+  <div class="version">v1.9.18</div>
+</div>
+
+<script>
+  /* MENU HAMBÚRGUER */
+  const menuBtn = document.getElementById("menuBtn");
+  const sideMenu = document.getElementById("sideMenu");
+  const overlay = document.getElementById("overlay");
+
+  menuBtn.onclick = () => {
+    sideMenu.classList.add("active");
+    overlay.classList.add("active");
+  };
+
+  overlay.onclick = () => {
+    sideMenu.classList.remove("active");
+    overlay.classList.remove("active");
+  };
+
+  /* FORMULÁRIO */
+  document.getElementById("form").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const codigo = document.getElementById("codigo").value.trim();
+
+    // validação básica
+    if (!codigo) {
+      alert("Informe o código de validação.");
+      return;
+    }
+
+    // 🔥 salva APENAS a chave
+    localStorage.setItem("consultaChave", codigo);
+
+    // loader
+    document.getElementById("loaderArea").style.display = "flex";
+
+    // redireciona
+    setTimeout(() => {
+      window.location.href = "resultado.html";
+    }, 3000);
+  });
+
+
+
+
+
+
+
+
+
+
+    // ❌ Bloquear botão direito do mouse
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // ❌ Bloquear atalhos de teclado
+  document.addEventListener("keydown", function (e) {
+
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + U
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + I
+    if (e.ctrlKey && e.key.toLowerCase() === "i") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + Shift + I
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + Shift + J
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + S (Salvar página)
+    if (e.ctrlKey && e.key.toLowerCase() === "s") {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl + P (Imprimir)
+    if (e.ctrlKey && e.key.toLowerCase() === "p") {
+      e.preventDefault();
+      return false;
+    }
+
+  });
+
+  // ❌ Tentativa extra para detectar DevTools aberto
+  setInterval(function () {
+    const start = performance.now();
+    debugger;
+    const end = performance.now();
+    if (end - start > 100) {
+      document.body.innerHTML = "";
+    }
+  }, 1000);
+</script>
+
+
+</body>
+
+<!-- Mirrored from prescricao-cfm-org.vercel.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Feb 2026 05:17:52 GMT -->
+</html>

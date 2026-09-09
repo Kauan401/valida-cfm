@@ -1,0 +1,31 @@
+{  "registros": [
+    {
+      "chave": "CFM-G3-7H3F9J6F1",
+      "data": "04/02/2026",
+
+      "paciente": {
+        "nome": "João da Silva",
+        "cpf": "123.456.789-00",
+        "dataNascimento": "12/05/1990",
+        "cid": "M54.5",
+        "observacoes": "Dor lombar."
+      },
+
+      "medico": {
+        "nome": "Dr. Carlos Almeida",
+        "crm": "CRM-GO 12345",
+        "especialidade": "Clínica Médica",
+        "assinaturaDigital": "Assinado digitalmente"
+      },
+
+      "atestato": {
+        "unidade": "Hospital Municipal de Fazenda Nova",
+      "medic": "codein",
+    "quanti": "codein",
+      "apre": "1 cx",
+        "poso": "tomar vo",
+        "status": "válido"
+      }
+    }
+  ]
+}
