@@ -54,64 +54,7 @@
       "apre": "Xarope",
         "poso": "tomar 5 ml vo ao dia",
         "status": "válido"
-     }
-    },
-    
-    {
-        "chave": "CFM-TS-FXBM362Y3",
-      "data": "12/11/2026",
 
-      "paciente": {
-        "nome": "Stefany De Oliveira Lima",
-        "cpf": "623.761.213-02",
-        "dataNascimento": "18/01/2006",
-        "cid": "F41.1",
-        "observacoes": "TRANSTONO DEPRESSIVO"
-      },
-
-      "medico": {
-        "nome": "Dr. ALAN SANTOS DE FREITAS",
-        "crm": "8934/CE",
-        "especialidade": "PSIQUIATRA",
-        "assinaturaDigital": "Assinado digitalmente"
-      },
-
-      "atestato": {
-        "unidade": "UNIMED - FORTALEZA - CE",
-      "medic": "SERTRALINA 50MG",
-    "quanti": "1 CX / 30 CP",
-      "apre": "COMPRIMIDOS REVESTIDOS",
-        "poso": "TOMAR V.O",
-        "status": "válido"
-          }
-    },
-    
-    {
-        "chave": "CFM-TO-FXBM362Y3",
-      "data": "09/11/2026",
-
-      "paciente": {
-        "nome": "Stefany de Oliveira Lima ",
-        "cpf": "623.761.213-02",
-        "dataNascimento": "18/01/2006",
-        "cid": "F41.1",
-        "observacoes": "ANSIEDADE."
-      },
-
-      "medico": {
-        "nome": "Dr. ALAN SANTOS DE FREITAS",
-        "crm": "8934/CE",
-        "especialidade": "PSIQUIATRA",
-        "assinaturaDigital": "Assinado digitalmente"
-      },
-
-      "atestato": {
-        "unidade": "UNIMED - FORTALEZA - CE",
-      "medic": "CLORIDRATO DE SERTRALINA",
-    "quanti": "2 CAIXAS / 30 CP / 50MG",
-      "apre": "DUAS CAIXAS CONTENDO 30 COMPRIMIDOS",
-        "poso": "TOMAR 1 CP V.O/DIA AO ACORDAR",
-        "status": "válido"
           }
     },
     
